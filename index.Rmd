@@ -1,0 +1,47 @@
+---
+title: "Data Products W3: Plotly Charts"
+author: "Axel Garcia"
+date: "February 15th, 2017"
+output: ioslides_presentation
+---
+
+```{r setup, include=FALSE}
+library(plotly)
+knitr::opts_chunk$set(echo = FALSE)
+```
+
+## Chart 1 of 2: Scatter Plot (2D Chart)
+```{r plotly2, echo=FALSE, message=FALSE, warning=FALSE}
+attach(attitude)
+plot_ly(attitude, x=complaints, y=raises, type="scatter", mode="markers", color=advance, size=learning) %>%
+  layout(
+    title="The Chatterjee–Price Attitude Data",
+    xaxis=list(title="employee complaints"),
+    yaxis=list(title="Raises based on performance")
+  )
+```
+
+* Size is Opportunity to learn
+* Color is Advancement
+
+## Chart 2 of 2: Scatter Plot (3D Chart)
+```{r plotly1, echo=FALSE, message=FALSE, warning=FALSE}
+attach(freeny)
+plot_ly(freeny, x=time(y), y=income.level, z=price.index, 
+        type="scatter3d", mode="markers", color=market.potential,
+        size=lag.quarterly.revenue+100) %>% 
+  layout(
+    title="Freeny's Revenue Data",
+    scene=list(
+      xaxis=list(title="Time"), 
+      yaxis=list(title="Income Level"),
+      zaxis=list(title="Price Index"))
+    )
+```
+* Clear correlation between Income Level and Price Index over time.
+
+## R Markdown
+
+This is an R Markdown presentation. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
+
+When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document.
